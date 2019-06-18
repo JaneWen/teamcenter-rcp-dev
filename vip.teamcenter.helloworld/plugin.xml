@@ -9,54 +9,210 @@
             id="vip.teamcenter.helloworld.commands.category">
       </category>
       <command
-            name="Sample Command"
+            name="命令1"
             categoryId="vip.teamcenter.helloworld.commands.category"
-            id="vip.teamcenter.helloworld.commands.sampleCommand">
+            id="vip.teamcenter.helloworld.commands.sampleCommand1">
       </command>
+      <command
+            name="命令2"
+            categoryId="vip.teamcenter.helloworld.commands.category"
+            id="vip.teamcenter.helloworld.commands.sampleCommand2">
+      </command>
+      <command
+            name="命令3"
+            categoryId="vip.teamcenter.helloworld.commands.category"
+            id="vip.teamcenter.helloworld.commands.sampleCommand3">
+      </command>
+      <command
+            name="命令4"
+            categoryId="vip.teamcenter.helloworld.commands.category"
+            id="vip.teamcenter.helloworld.commands.sampleCommand4">
+      </command>
+      <command
+            name="命令5"
+            categoryId="vip.teamcenter.helloworld.commands.category"
+            id="vip.teamcenter.helloworld.commands.sampleCommand5">
+      </command> 
+      <command
+            name="命令6"
+            categoryId="vip.teamcenter.helloworld.commands.category"
+            id="vip.teamcenter.helloworld.commands.sampleCommand6">
+      </command>      
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            commandId="vip.teamcenter.helloworld.commands.sampleCommand"
+            commandId="vip.teamcenter.helloworld.commands.sampleCommand1"
+            class="vip.teamcenter.helloworld.handlers.SampleHandler">
+      </handler>
+      <handler
+            commandId="vip.teamcenter.helloworld.commands.sampleCommand2"
+            class="vip.teamcenter.helloworld.handlers.SampleHandler">
+      </handler>
+      <handler
+            commandId="vip.teamcenter.helloworld.commands.sampleCommand3"
+            class="vip.teamcenter.helloworld.handlers.SampleHandler">
+      </handler>
+       <handler
+            commandId="vip.teamcenter.helloworld.commands.sampleCommand4"
+            class="vip.teamcenter.helloworld.handlers.SampleHandler">
+      </handler> 
+       <handler
+            commandId="vip.teamcenter.helloworld.commands.sampleCommand5"
+            class="vip.teamcenter.helloworld.handlers.SampleHandler">
+      </handler>           
+       <handler
+            commandId="vip.teamcenter.helloworld.commands.sampleCommand6"
             class="vip.teamcenter.helloworld.handlers.SampleHandler">
       </handler>
    </extension>
    <extension
          point="org.eclipse.ui.bindings">
       <key
-            commandId="vip.teamcenter.helloworld.commands.sampleCommand"
+            commandId="vip.teamcenter.helloworld.commands.sampleCommand1"
             contextId="org.eclipse.ui.contexts.window"
-            sequence="M1+6"
+            sequence="M1+S"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
       </key>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
-      <menuContribution
-            locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+      <!--一级菜单定义-->   
+      <menuContribution locationURI="menu:org.eclipse.ui.main.menu">
          <menu
-               label="Sample Menu"
+               label="vip.teamcenter"
                mnemonic="M"
                id="vip.teamcenter.helloworld.menus.sampleMenu">
+            <visibleWhen>
+              <or>
+                <reference definitionId="com.teamcenter.rac.ui.inMainPerspective"/>
+                <reference definitionId="com.teamcenter.rac.cme.mpp.inMainView" />
+              </or>
+            </visibleWhen>
             <command
-                  commandId="vip.teamcenter.helloworld.commands.sampleCommand"
+              commandId="vip.teamcenter.helloworld.commands.sampleCommand1"
+              mnemonic="S"
+              id="vip.teamcenter.helloworld.menus.sampleCommand1">
+              <visibleWhen>
+                <with variable="rac_command_suppression">
+                  <not>
+                    <iterate operator="or">
+                      <equals value="vip.teamcenter.helloworld.commands.sampleCommand1" />
+                    </iterate>
+                  </not>
+                </with>
+              </visibleWhen>
+            </command>
+            <menu
+               label="二级菜单"
+               mnemonic="M"
+               id="vip.teamcenter.helloworld.menus.sampleMenu2">
+               <command
+                  commandId="vip.teamcenter.helloworld.commands.sampleCommand3"
                   mnemonic="S"
-                  id="vip.teamcenter.helloworld.menus.sampleCommand">
+                  id="vip.teamcenter.helloworld.menus.sampleCommand3">
+                <visibleWhen>
+                    <with variable="rac_command_suppression">
+                        <not>
+                            <iterate operator="or">
+                                <equals value="vip.teamcenter.helloworld.commands.sampleCommand3" />
+                            </iterate>
+                        </not>
+                    </with>
+                </visibleWhen>
+              </command>
+            </menu>
+            <command
+                  commandId="vip.teamcenter.helloworld.commands.sampleCommand2"
+                  mnemonic="S"
+                  id="vip.teamcenter.helloworld.menus.sampleCommand2">
+                <visibleWhen>
+                    <with variable="rac_command_suppression">
+                        <not>
+                            <iterate operator="or">
+                                <equals value="vip.teamcenter.helloworld.commands.sampleCommand2" />
+                            </iterate>
+                        </not>
+                    </with>
+                </visibleWhen>
             </command>
          </menu>
       </menuContribution>
+      <!--文件菜单下的二级菜单定义-->   
+      <menuContribution locationURI="menu:file?after=fileStart">
+         <menu id="vip.teamcenter.helloworld.menus.sampleMenu3" label="VIP新建">
+             <visibleWhen>
+                <or>
+                    <reference definitionId="com.teamcenter.rac.ui.inMainPerspective"/>
+                    <reference definitionId="com.teamcenter.rac.cme.mpp.inMainView" />
+                </or>
+            </visibleWhen>
+             <command
+                 commandId="vip.teamcenter.helloworld.commands.sampleCommand4">
+                 <visibleWhen>
+                    <with variable="rac_command_suppression">
+                        <not>
+                            <iterate operator="or">
+                                <equals value="vip.teamcenter.helloworld.commands.sampleCommand4" />
+                            </iterate>
+                        </not>
+                    </with>
+                </visibleWhen>    
+             </command>
+         </menu>
+      </menuContribution>   
+      <!--工具栏菜单定义-->   
       <menuContribution
-            locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
+            locationURI="toolbar:org.eclipse.ui.main.toolbar">
          <toolbar
                id="vip.teamcenter.helloworld.toolbars.sampleToolbar">
             <command
-                  commandId="vip.teamcenter.helloworld.commands.sampleCommand"
+                  commandId="vip.teamcenter.helloworld.commands.sampleCommand5"
                   icon="icons/sample.gif"
-                  tooltip="Say hello world"
-                  id="vip.teamcenter.helloworld.toolbars.sampleCommand">
+                  tooltip="Say hello world 命令5"
+                  id="vip.teamcenter.helloworld.toolbars.sampleCommand1">
+                 <visibleWhen>
+                   <and>
+                     <or>
+                    <reference definitionId="com.teamcenter.rac.ui.inMainPerspective"/>
+                    <reference definitionId="com.teamcenter.rac.cme.mpp.inMainView" />
+                    </or>
+                    <with variable="rac_command_suppression">
+                        <not>
+                            <iterate operator="or">
+                                <equals value="vip.teamcenter.helloworld.commands.sampleCommand5" />
+                            </iterate>
+                        </not>
+                    </with>
+                 </and>
+                </visibleWhen>    
             </command>
          </toolbar>
       </menuContribution>
+      <!--右键菜单定义-->
+      <menuContribution locationURI="popup:org.eclipse.ui.popup.any?before=additions">
+        <command commandId="vip.teamcenter.helloworld.commands.sampleCommand6">
+          <visibleWhen>
+            <and>
+              <or>
+                <reference definitionId="com.teamcenter.rac.ui.inMainPerspective" />
+                <reference definitionId="com.teamcenter.rac.pse.inMainView" />
+              </or>
+              <iterate ifEmpty="false">
+                 <adapt type="com.teamcenter.rac.kernel.TCComponent">
+                     <test property="com.teamcenter.rac.kernel.TCComponent.type"  value="Item,Dataset" />
+                 </adapt>
+              </iterate>
+              <with variable="rac_command_suppression">
+                 <not>
+                   <iterate operator="or">
+                     <equals value="com.nancal.bom.commands.editbomline"/>
+                   </iterate>
+                 </not>
+              </with>
+             </and>
+            </visibleWhen>
+          </command>
+      </menuContribution>
    </extension>
-
 </plugin>

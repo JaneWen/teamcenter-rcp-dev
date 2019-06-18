@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Helloworld
 Bundle-SymbolicName: vip.teamcenter.helloworld;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 1.0.0
 Bundle-Activator: vip.teamcenter.helloworld.Activator
 Bundle-Vendor: vip.teamcenter
 Require-Bundle: org.eclipse.ui,
